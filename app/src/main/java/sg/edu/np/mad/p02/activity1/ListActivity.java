@@ -24,6 +24,7 @@ public class ListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         ArrayList<User> userList = createList();
@@ -55,7 +56,7 @@ public class ListActivity extends AppCompatActivity {
         });
 
         RecyclerView listRV = findViewById(R.id.list_rv);
-        ListAdapter l_adapter = new ListAdapter(userList);
+        ListAdapter l_adapter = new ListAdapter(userList,this);
 
         LinearLayoutManager listLayoutManager = new LinearLayoutManager(this);
 

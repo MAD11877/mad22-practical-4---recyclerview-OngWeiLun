@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.Parcelable;
 
 import org.w3c.dom.Text;
 
@@ -17,8 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        User user = new User("John", "25 year old male", 12345, false);
-        loadProfile(user);
+        loadProfile();
 
         Button messageButton = (Button) findViewById(R.id.messageButton);
 
@@ -32,15 +33,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void loadProfile(User user){
+    public void loadProfile(){
         Intent receivingEnd = getIntent();
-        String num = receivingEnd.getStringExtra("number");
+        String username = receivingEnd.getStringExtra("username");
+        String description = receivingEnd.getStringExtra("description");
+        boolean follow = Boolean.parseBoolean(receivingEnd.getStringExtra("follow"));
         TextView name = findViewById(R.id.nameBox);
         TextView desc = findViewById(R.id.descBox);
         TextView followButton = findViewById(R.id.followButton);
-        name.setText(user.name + num);
-        desc.setText((user.description));
-        if(user.getFollowed() == true){
+        name.setText(username);
+        desc.setText(description);
+        if(follow == true){
             followButton.setText("UNFOLLOW");
         }
         else{
