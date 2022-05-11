@@ -2,12 +2,17 @@ package sg.edu.np.mad.p02.activity1;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,24 +26,10 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        ArrayList<User> userList = new ArrayList<>();
+        ArrayList<User> userList = createList();
 
+        Log.d("ListSize","Length: " + userList.size());
 
-        for( int i = 0; i < 20; i++){
-            Random rand = new Random();
-            int followRand = rand.nextInt(2);
-            boolean followed;
-            if(followRand == 1){
-                followed = true;
-            }
-            else{
-                followed = false;
-            }
-            int userId = rand.nextInt(1000000000);
-            String desc = Integer.toString(rand.nextInt(1000000000));
-            User newUser = new User("Name","Description - " + desc, userId, followed);
-            userList.add(newUser);
-        }
 
         AlertDialog.Builder profile = new AlertDialog.Builder(this);
         profile.setTitle("Profile");
@@ -63,15 +54,37 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
+        RecyclerView listRV = findViewById(R.id.list_rv);
+        ListAdapter l_adapter = new ListAdapter(userList);
 
-        findViewById(R.id.listImage).setOnClickListener(
-                new View.OnClickListener(){
-                    public void onClick(View V){
-                        AlertDialog alert = profile.create();
-                        alert.show();
+        LinearLayoutManager listLayoutManager = new LinearLayoutManager(this);
+
+        listRV.setLayoutManager(listLayoutManager);
+        listRV.setItemAnimator(new DefaultItemAnimator());
+        listRV.setAdapter(l_adapter);
+    }
+
+    public ArrayList<User> createList(){
+
+        ArrayList<User> uList = new ArrayList<>();
+
+        for( int i = 0; i < 20; i++){
+            Random rand = new Random();
+            int followRand = rand.nextInt(2);
+            boolean followed;
+            if(followRand == 1){
+                followed = true;
             }
+            else{
+                followed = false;
+            }
+            int userId = rand.nextInt(1000000000);
+            String desc = Integer.toString(rand.nextInt(1000000000));
+            User newUser = new User("Name","Description - " + desc, userId, followed);
+            Log.d("#" + i,"User1:" + newUser.getName() + newUser.description);
+            uList.add(newUser);
         }
-        );
+        return uList;
     }
 
 

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/aowl1/OneDrive/Desktop/IT/2.1/MAD/Week 4/app/src/main/res/layout/activity_list.xml" value="0.25" />
+        <entry key="..\:/Users/aowl1/OneDrive/Desktop/IT/2.1/MAD/Week 4/app/src/main/res/layout/user_block.xml" value="0.4" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
